@@ -1,0 +1,67 @@
+<%- include("partials/header") -%>
+<div class="container">
+  <h1>Player</h1>
+
+  <div class="container-fluid box">
+    <h3>Player List</h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% playersList.forEach((player, index)=> { %>
+        <tr>
+          <td  contenteditable="true"><%= index %></td>
+          <td><%= player.firstName %></td>
+          <td><%= player.lastName %></td>
+          <td><%= player.email %></td>
+        </tr>
+        <%});%>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container-fluid box">
+    <h2>Add Player</h2>
+    <form action="/player" method="post">
+      <div class="form-group">
+        <label for="tf-firstname">Firstname:</label>
+        <input
+          class="form-control"
+          id="tf-firstname"
+          type="text"
+          name="firstname"
+          placeholder="Firstname"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-lastname">Lastname:</label>
+        <input
+          class="form-control"
+          id="tf-lastname"
+          type="text"
+          name="lastname"
+          placeholder="Lastname"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-email">Email:</label>
+        <input
+          class="form-control"
+          id="tf-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+<%- include("partials/footer") -%>

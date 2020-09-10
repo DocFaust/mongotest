@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const port = process.env.PORT || 3000;
-const app = express();
+const app = express(); 
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -77,7 +77,7 @@ app
       email: email,
       activityLevel: 0,
     });
-    await player.save().then(res.redirect("/"));
+    await player.save().then(res.redirect("/player"));
   });
 
 app.listen(port, () => {

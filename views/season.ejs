@@ -1,0 +1,45 @@
+<%- include("partials/header") -%>
+<div class="container">
+  <h1>Seasons</h1>
+
+  <div class="container-fluid box">
+    <h3>Season List</h3>
+  </div>
+  <div class="container-fluid box">
+    <h3>Add Season</h3>
+    <form action="/season" method="post">
+        <div class="form-group">
+          <label for="tf-date">Date:</label>
+          <input
+            class="form-control"
+            id="tf-date"
+            type="date"
+            name="date"
+            placeholder="Date"
+          />
+        </div>
+        <div class="form-group">
+          <label for="tf-lastname">Lastname:</label>
+          <input
+            class="form-control"
+            id="tf-lastname"
+            type="text"
+            name="lastname"
+            placeholder="Lastname"
+          />
+        </div>
+        <div class="form-group">
+          <label for="tf-email">Email:</label>
+          <input
+            class="form-control"
+            id="tf-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+  </div>
+</div>
+<%- include("partials/footer") -%>

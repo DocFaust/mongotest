@@ -39,6 +39,7 @@ const gameSchema = new mongoose.Schema({
 });
 
 const seasonSchema = new mongoose.Schema({
+  name: String,
   startDate: Date,
   endDate: Date,
   price: mongoose.Schema.Types.Decimal128,
@@ -55,8 +56,25 @@ app.route("/").get(async (req, res) => {
   res.render("index", {"playersList": playersList});
 });
 
-app.route("/season").get((req, res) => {
-  res.render("season");
+app.route("/season").get(async (req, res) => {
+  const seasonsList = await Season.find();
+
+  res.render("season", {seasonsList: seasonsList});
+}).post(async (req,res)=>{
+  const name = req.body.name;
+  const startdate = req.body.startDate;
+  const enddate = req.body.endDate;
+  const price = req.body.price;
+
+  const season = new Season({
+    name: name,
+    startDate: startdate,
+    endDate: enddate,
+    price: price
+  })
+
+  await season.save().then(res.redirect("/season")); 
+
 });
 
 app

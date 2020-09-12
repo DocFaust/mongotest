@@ -34,3 +34,7 @@
     background-color: #006a71;
     cursor: pointer;
 }
+
+.hidden {
+    visibility: hidden;
+}

@@ -2,44 +2,78 @@
 <div class="container">
   <h1>Seasons</h1>
 
-  <div class="container-fluid box">
+  <div class="container-fluid box  ">
     <h3>Season List</h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Start date</th>
+          <th scope="col">End date</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% seasonsList.forEach((season, index)=> { %>
+        <tr>
+          <td contenteditable="true"><%= index %></td>
+          <td><%= season.name %></td>
+          <td><%= season.startDate.toLocaleDateString('de-DE') %></td>
+          <td><%= season.endDate.toLocaleDateString('de-DE') %></td>
+          <td><%= new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(season.price) %></td>
+        </tr>
+        <%});%>
+      </tbody>
+    </table>
   </div>
+
   <div class="container-fluid box">
     <h3>Add new Season</h3>
     <form action="/season" method="post">
-        <div class="form-group">
-          <label for="tf-date">Date:</label>
-          <input
-            class="form-control"
-            id="tf-date"
-            type="date"
-            name="date"
-            placeholder="Date"
-          />
-        </div>
-        <div class="form-group">
-          <label for="tf-lastname">Lastname:</label>
-          <input
-            class="form-control"
-            id="tf-lastname"
-            type="text"
-            name="lastname"
-            placeholder="Lastname"
-          />
-        </div>
-        <div class="form-group">
-          <label for="tf-email">Email:</label>
-          <input
-            class="form-control"
-            id="tf-email"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-      </form>
+      <div class="form-group">
+        <label for="tf-name">Name:</label>
+        <input
+          class="form-control"
+          id="tf-name"
+          type="text"
+          name="name"
+          placeholder="Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-startDate">Start date:</label>
+        <input
+          class="form-control"
+          id="tf-startDate"
+          type="date"
+          name="startDate"
+          placeholder="Start date"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-endDate">End date:</label>
+        <input
+          class="form-control"
+          id="tf-endDate"
+          type="date"
+          name="endDate"
+          placeholder="End date"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-price">Price:</label>
+        <input
+          class="form-control"
+          id="tf-price"
+          type="number"
+          name="price"
+          placeholder="Price"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
   </div>
 </div>
 <%- include("partials/footer") -%>

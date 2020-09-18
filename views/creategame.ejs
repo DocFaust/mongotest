@@ -1,0 +1,30 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+  <h3>Create game</h3>
+
+  <form action="/creategame" method="post">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>anwesend</td>
+          <td>behalt</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% playersList.forEach((player, index) => { %>
+        <tr>
+          <td><%= player.firstName%> <%=player.lastName %></td>
+          <td><input class="form-control" type="checkbox" name="present-<%= index %> " /></td>
+          <td><input class="form-control" type="checkbox" name="payed-<%= index %>" /></td>
+        </tr>
+        <% })%>
+      </tbody>
+    </table>
+    <input class="btn btn-primary" type="submit" value="Submit">
+
+  </form>
+</div>
+
+<%- include("partials/footer") -%>

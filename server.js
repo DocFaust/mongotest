@@ -26,16 +26,12 @@ const playerSchema = new mongoose.Schema({
   email: String,
   activityLevel: Number,
 });
+
 const entrySchema = new mongoose.Schema({
   date: Date,
+  description: String,
   player: playerSchema,
   amount: mongoose.Schema.Types.Decimal128,
-});
-
-const gameSchema = new mongoose.Schema({
-  date: Date,
-  players: [playerSchema],
-  entries: [entrySchema],
 });
 
 const seasonSchema = new mongoose.Schema({
@@ -44,6 +40,13 @@ const seasonSchema = new mongoose.Schema({
   endDate: Date,
   price: mongoose.Schema.Types.Decimal128,
 });
+
+const gameSchema = new mongoose.Schema({
+  date: Date,
+  season: seasonSchema,
+  entries: [entrySchema],
+});
+
 
 const Game = mongoose.model("Game", gameSchema);
 const Player = mongoose.model("Player", playerSchema);
@@ -97,6 +100,55 @@ app
     });
     await player.save().then(res.redirect("/player"));
   });
+
+  app.route("/creategame").get(async (req, res) => {
+    const playersList = await Player.find();
+    res.render("creategame", {playersList: playersList});
+  }).post(async (req, res) => {
+    console.log(res.body);
+  })
+
+  app.route("/test").get(async (req, res) => {
+    const playersList = await Player.find();
+
+    const entry1 = new Entry({
+      date: Date.now(),
+      description: "Spieleinsatz",
+      player: playersList[0],
+      amount: 10.10
+    })
+
+    await entry1.save();
+
+    const entry2 = new Entry({
+      date: Date.now(),
+      description: "Spieleinsatz",
+      player: playersList[1],
+      amount: 10.10
+    })
+
+    await entry2.save();
+
+    const entry3 = new Entry({
+      date: Date.now(),
+      description: "Spieleinsatz",
+      player: playersList[2],
+      amount: 10.10
+    })
+
+    await entry3.save();
+
+    const game = new Game({
+      date: Date.now(),
+      players: playersList,
+      entries: [entry1, entry2, entry3],
+    })
+
+    await game.save();
+    res.send("Suppa");
+  })
+
+
 
 app.listen(port, () => {
   console.log("Listening to port " + port);

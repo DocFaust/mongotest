@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+        mongotest:
+            container_name: mongotest
+            image: wfaust/mongotest
+            restart: always
+            build: .
+            ports:
+              - "3000:3000"
+        mongotestdb:
+              container_name: mongo
+              image: mongo
+              volumes:
+                - ./data:/data/db
+              ports:
+                - '27018:27017'

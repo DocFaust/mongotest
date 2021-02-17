@@ -1,7 +1,35 @@
 <%- include("partials/header") -%>
 
 <div class="container">
-  <h1>Mongotest</h1>
+  <h1>Saldo</h1>
+
+  <div class="container-fluid box">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Saldo</th>
+        </tr>
+      </thead>
+      <tbody
+      <% saldoList.forEach((saldo, index)=> { %>
+        >
+        <tr>
+          <td>
+            <%= saldo.name %>
+          </td>
+          <td>
+            <%= saldo.value %>
+          </td>
+        </tr>
+        <%});%>
+
+      </tbody>
+<tfoot>
+  Saldo: <%= completeSaldo %> 
+</tfoot>
+    </table>
+  </div>
 
   <div class="container-fluid box">
     <h3>Links</h3>

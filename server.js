@@ -53,6 +53,7 @@ const Player = mongoose.model("Player", playerSchema);
 const Entry = mongoose.model("Entry", entrySchema);
 const Season = mongoose.model("Season", seasonSchema);
 
+// Saldopage
 app.route("/").get(async (req, res) => {
   const playersList = await Player.find();
   console.log(playersList);

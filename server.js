@@ -1,4 +1,4 @@
-//jshint esversion:6
+//jshint esversion:8
 const dotenv = require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -74,7 +74,7 @@ app.route("/season").get(async (req, res) => {
     startDate: startdate,
     endDate: enddate,
     price: price
-  })
+  });
 
   await season.save().then(res.redirect("/season")); 
 
@@ -86,6 +86,15 @@ app
     const playersList = await Player.find();
     console.log(playersList);
     res.render("player", {"playersList": playersList});
+  });
+
+
+app
+  .route("/createPlayer")
+  .get(async (req, res) => {
+    const playersList = await Player.find();
+    console.log(playersList);
+    res.render("createPlayer");
   })
   .post(async (req, res) => {
     const firstname = req.body.firstname;

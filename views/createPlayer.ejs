@@ -1,0 +1,40 @@
+<%- include("partials/header") -%>
+
+<div class="container-fluid box" id="overlay">
+    <h2>Add Player</h2>
+    <form action="/createPlayer" method="post">
+      <div class="form-group">
+        <label for="tf-firstname">Firstname:</label>
+        <input
+          class="form-control"
+          id="tf-firstname"
+          type="text"
+          name="firstname"
+          placeholder="Firstname"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-lastname">Lastname:</label>
+        <input
+          class="form-control"
+          id="tf-lastname"
+          type="text"
+          name="lastname"
+          placeholder="Lastname"
+        />
+      </div>
+      <div class="form-group">
+        <label for="tf-email">Email:</label>
+        <input
+          class="form-control"
+          id="tf-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <%- include("partials/footer") -%>
